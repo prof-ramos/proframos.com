@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Audit Checklist | Prof. Gabriel Ramos</title>
+  <meta name="description" content="Checklist completo de auditoria SEO: On-Page, Technical e Off-Page Optimization.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 40px 20px 60px;
+    }
+
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .page-header {
+      margin-bottom: 36px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #a0a0a0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: #e94560; }
+
+    .page-header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .page-header .subtitle {
+      color: #a0a0a0;
+      font-size: 0.95rem;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    /* Meta fields */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .meta-grid .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #a0a0a0;
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #fff;
+      padding: 9px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: rgba(233, 69, 96, 0.5);
+    }
+
+    .field input::placeholder { color: #555; }
+
+    /* Section header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .section-number {
+      color: #e94560;
+      margin-right: 8px;
+    }
+
+    .progress-badge {
+      background: rgba(233, 69, 96, 0.15);
+      border: 1px solid rgba(233, 69, 96, 0.3);
+      color: #e94560;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+      line-height: 1.5;
+    }
+
+    .checklist li:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .checklist li + li {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .checklist input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 2px;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .checklist input[type="checkbox"]:checked {
+      background: #e94560;
+      border-color: #e94560;
+    }
+
+    .checklist input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    .checklist label {
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #ddd;
+      transition: color 0.2s;
+    }
+
+    .checklist li.checked label {
+      color: #555;
+      text-decoration: line-through;
+    }
+
+    .optional-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      color: #a0a0a0;
+      background: rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    .checklist li.checked .optional-badge {
+      opacity: 0.4;
+    }
+
+    /* Notes / Legend footer */
+    .legend {
+      color: #a0a0a0;
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+    }
+
+    .notes-label {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #a0a0a0;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: rgba(233, 69, 96, 0.5);
+    }
+
+    textarea::placeholder { color: #555; }
+
+    /* Print hint */
+    .print-btn {
+      display: inline-block;
+      background: transparent;
+      color: #a0a0a0;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.2s, border-color 0.2s;
+      margin-top: 8px;
+    }
+
+    .print-btn:hover {
+      color: #e94560;
+      border-color: rgba(233, 69, 96, 0.4);
+    }
+
+    @media (max-width: 520px) {
+      .card { padding: 18px 16px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .meta-grid .full-width { grid-column: 1; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; padding: 20px; }
+      .card { border: 1px solid #ccc; background: #fff; }
+      .back-link, .print-btn { display: none; }
+      .field input, textarea { border: 1px solid #ccc; color: #000; background: #fff; }
+      .checklist label { color: #222; }
+      .checklist li.checked label { color: #999; }
+      .section-header h2 { color: #000; }
+      .progress-badge { color: #c0392b; border-color: #c0392b; background: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <header class="page-header">
+      <a href="/" class="back-link">← Voltar</a>
+      <h1>SEO Audit Checklist</h1>
+      <p class="subtitle">Auditoria completa de otimização para motores de busca</p>
+    </header>
+
+    <!-- Meta Fields -->
+    <div class="card">
+      <div class="meta-grid">
+        <div class="field">
+          <label for="meta-website">Website</label>
+          <input type="text" id="meta-website" placeholder="Ex: Meu Site" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="meta-url">URL</label>
+          <input type="url" id="meta-url" placeholder="https://..." autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="meta-by">Preparado por</label>
+          <input type="text" id="meta-by" placeholder="Nome" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="meta-date">Data</label>
+          <input type="date" id="meta-date">
+        </div>
+        <div class="field full-width">
+          <label for="meta-keyword">Keyword primária</label>
+          <input type="text" id="meta-keyword" placeholder="Ex: direito constitucional para concursos" autocomplete="off">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: On-Page -->
+    <div class="card">
+      <div class="section-header">
+        <h2><span class="section-number">1.</span> On-Page Optimization</h2>
+        <span class="progress-badge" id="progress-1">0 / 18</span>
+      </div>
+      <ul class="checklist" id="section-1">
+        <li><input type="checkbox" id="c1-1"><label for="c1-1">Keyword primária presente na URL</label></li>
+        <li><input type="checkbox" id="c1-2"><label for="c1-2">URL curta e legível (human-readable)</label></li>
+        <li><input type="checkbox" id="c1-3"><label for="c1-3">URL em subfolder (não subdomínio)</label></li>
+        <li><input type="checkbox" id="c1-4"><label for="c1-4">URL usa hífens (não underscores)</label></li>
+        <li><input type="checkbox" id="c1-5"><label for="c1-5">Title tag otimizada</label></li>
+        <li><input type="checkbox" id="c1-6"><label for="c1-6">Meta description otimizada</label></li>
+        <li><input type="checkbox" id="c1-7"><label for="c1-7">H1 tag otimizada</label></li>
+        <li><input type="checkbox" id="c1-8"><label for="c1-8">Imagens otimizadas (alt text, compressão)</label></li>
+        <li><input type="checkbox" id="c1-9"><label for="c1-9">Keyword primária mencionada 2-3x no conteúdo</label></li>
+        <li><input type="checkbox" id="c1-10"><label for="c1-10">Página não está over-optimized</label></li>
+        <li><input type="checkbox" id="c1-11"><label for="c1-11">Conteúdo inclui keywords LSI (Latent Semantic Index)</label></li>
+        <li><input type="checkbox" id="c1-12"><label for="c1-12">Links internos com anchor text descritivo</label></li>
+        <li><input type="checkbox" id="c1-13"><label for="c1-13">Página livre de links quebrados</label></li>
+        <li><input type="checkbox" id="c1-14"><label for="c1-14">Links externos para sites de alta autoridade<span class="optional-badge">Opcional</span></label></li>
+        <li><input type="checkbox" id="c1-15"><label for="c1-15">Conteúdo atualizado recentemente</label></li>
+        <li><input type="checkbox" id="c1-16"><label for="c1-16">CTA claro direcionando o próximo passo</label></li>
+        <li><input type="checkbox" id="c1-17"><label for="c1-17">Breadcrumbs implementados<span class="optional-badge">Opcional</span></label></li>
+        <li><input type="checkbox" id="c1-18"><label for="c1-18">Espaço em branco adequado para legibilidade</label></li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Technical -->
+    <div class="card">
+      <div class="section-header">
+        <h2><span class="section-number">2.</span> Technical Optimization</h2>
+        <span class="progress-badge" id="progress-2">0 / 9</span>
+      </div>
+      <ul class="checklist" id="section-2">
+        <li><input type="checkbox" id="c2-1"><label for="c2-1">Página indexada pelo Google</label></li>
+        <li><input type="checkbox" id="c2-2"><label for="c2-2">Passa no Chrome Lighthouse audit</label></li>
+        <li><input type="checkbox" id="c2-3"><label for="c2-3">URL livre de problemas de redirect</label></li>
+        <li><input type="checkbox" id="c2-4"><label for="c2-4">Google Analytics rastreando sessões corretamente</label></li>
+        <li><input type="checkbox" id="c2-5"><label for="c2-5">Ads (se houver) são user-friendly</label></li>
+        <li><input type="checkbox" id="c2-6"><label for="c2-6">Sitemap atualizado e submetido aos buscadores</label></li>
+        <li><input type="checkbox" id="c2-7"><label for="c2-7">robots.txt configurado corretamente</label></li>
+        <li><input type="checkbox" id="c2-8"><label for="c2-8">HTTPS ativo</label></li>
+        <li><input type="checkbox" id="c2-9"><label for="c2-9">Página 404 otimizada para redirecionar usuários<span class="optional-badge">Opcional</span></label></li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Off-Page -->
+    <div class="card">
+      <div class="section-header">
+        <h2><span class="section-number">3.</span> Off-Page Optimization</h2>
+        <span class="progress-badge" id="progress-3">0 / 6</span>
+      </div>
+      <ul class="checklist" id="section-3">
+        <li><input type="checkbox" id="c3-1"><label for="c3-1">Backlinks de sites confiáveis</label></li>
+        <li><input type="checkbox" id="c3-2"><label for="c3-2">Backlinks de sites contextualmente relevantes</label></li>
+        <li><input type="checkbox" id="c3-3"><label for="c3-3">Backlinks de sites com conteúdo atualizado</label></li>
+        <li><input type="checkbox" id="c3-4"><label for="c3-4">Backlinks sem redirect chains</label></li>
+        <li><input type="checkbox" id="c3-5"><label for="c3-5">Backlinks dofollow (passam valor SEO)</label></li>
+        <li><input type="checkbox" id="c3-6"><label for="c3-6">Distribuição de anchor text natural</label></li>
+      </ul>
+    </div>
+
+    <!-- Footer: Legend + Notes -->
+    <div class="card">
+      <p class="legend">
+        <strong>Scores:</strong>&nbsp; ✅ Pass &nbsp;·&nbsp; ⚠️ Needs Work &nbsp;·&nbsp; ⬜ Not yet tested
+      </p>
+      <label class="notes-label" for="notes">Notes</label>
+      <textarea id="notes" placeholder="Observações, problemas encontrados, próximos passos..."></textarea>
+      <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'seo-checklist-v1';
+
+    function save() {
+      const state = {};
+      document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+        state[cb.id] = cb.checked;
+      });
+      document.querySelectorAll('.meta-grid input, #notes').forEach(el => {
+        state[el.id] = el.value;
+      });
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+    }
+
+    function load() {
+      let state;
+      try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return; }
+      document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+        if (state[cb.id] !== undefined) {
+          cb.checked = state[cb.id];
+          cb.closest('li').classList.toggle('checked', cb.checked);
+        }
+      });
+      document.querySelectorAll('.meta-grid input, #notes').forEach(el => {
+        if (state[el.id] !== undefined) el.value = state[el.id];
+      });
+    }
+
+    function updateProgress(sectionId) {
+      const section = document.getElementById(sectionId);
+      const all = section.querySelectorAll('input[type="checkbox"]');
+      const checked = section.querySelectorAll('input[type="checkbox"]:checked');
+      const idx = sectionId.replace('section-', '');
+      document.getElementById('progress-' + idx).textContent = checked.length + ' / ' + all.length;
+    }
+
+    function updateAllProgress() {
+      ['section-1', 'section-2', 'section-3'].forEach(updateProgress);
+    }
+
+    // Bind checkboxes
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', function() {
+        this.closest('li').classList.toggle('checked', this.checked);
+        updateAllProgress();
+        save();
+      });
+    });
+
+    // Clicking the <li> also toggles the checkbox
+    document.querySelectorAll('.checklist li').forEach(li => {
+      li.addEventListener('click', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
+        const cb = this.querySelector('input[type="checkbox"]');
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event('change'));
+      });
+    });
+
+    // Bind meta inputs + notes
+    document.querySelectorAll('.meta-grid input, #notes').forEach(el => {
+      el.addEventListener('input', save);
+    });
+
+    // Init
+    load();
+    updateAllProgress();
+  </script>
+</body>
+</html>
