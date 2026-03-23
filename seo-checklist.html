@@ -164,6 +164,12 @@
       position: relative;
     }
 
+    .checklist input[type="checkbox"]:focus-visible {
+      outline: none;
+      border-color: #e94560;
+      box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.35);
+    }
+
     .checklist input[type="checkbox"]:checked {
       background: #e94560;
       border-color: #e94560;
@@ -391,7 +397,7 @@
       </p>
       <label class="notes-label" for="notes">Notes</label>
       <textarea id="notes" placeholder="Observações, problemas encontrados, próximos passos..."></textarea>
-      <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+      <button type="button" class="print-btn" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
     </div>
 
   </div>
@@ -448,7 +454,7 @@
     // Clicking the <li> also toggles the checkbox
     document.querySelectorAll('.checklist li').forEach(li => {
       li.addEventListener('click', function(e) {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
+        if (e.target.closest('input, label')) return;
         const cb = this.querySelector('input[type="checkbox"]');
         cb.checked = !cb.checked;
         cb.dispatchEvent(new Event('change'));
